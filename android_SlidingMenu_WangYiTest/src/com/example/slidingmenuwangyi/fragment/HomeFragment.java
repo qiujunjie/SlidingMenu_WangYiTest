@@ -26,9 +26,15 @@ public class HomeFragment extends Fragment {
 	public HomeFragment(){}
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Log.d(TAG, "HomeFragment-----onCreate");
+	}
+	
+	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		Log.d(TAG, "HomeFragment-----onCreate");
+		Log.d(TAG, "HomeFragment-----onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         
         initData();

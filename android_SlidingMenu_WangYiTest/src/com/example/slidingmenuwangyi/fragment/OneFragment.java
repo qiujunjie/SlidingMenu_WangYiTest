@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.slidingmenuwangyi.R;
+import com.haarman.listviewanimations.swinginadapters.prepared.ScaleInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import android.os.Bundle;
@@ -33,17 +35,27 @@ public class OneFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Log.d(TAG, "OneFragment-----onCreate");
-		View rootView = inflater.inflate(R.layout.one_fragment,
-				container, false);
+		View rootView = inflater.inflate(R.layout.one_fragment, container,
+				false);
 		initView(rootView);
 		return rootView;
 	}
 
 	private void initView(View rootView) {
 		for (int i = 0; i < 20; i++) {
-			list.add("项目"+i);
+			list.add("项目" + i);
 		}
-		mListView = (PullToRefreshListView)rootView.findViewById(android.R.id.list);
-		mListView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list));
+//		SwingBottomInAnimationAdapter adapter = new SwingBottomInAnimationAdapter(
+//				new ArrayAdapter<String>(getActivity(),
+//						android.R.layout.simple_list_item_1, list));
+
+		ScaleInAnimationAdapter adapter = new ScaleInAnimationAdapter(
+				new SwingBottomInAnimationAdapter(new ArrayAdapter<String>(getActivity(),
+						android.R.layout.simple_list_item_1, list)));
+
+		mListView = (PullToRefreshListView) rootView
+				.findViewById(android.R.id.list);
+		adapter.setAbsListView(mListView.getRefreshableView());
+		mListView.setAdapter(adapter);
 	}
 }

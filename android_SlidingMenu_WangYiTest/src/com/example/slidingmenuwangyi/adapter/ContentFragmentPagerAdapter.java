@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 
 public class ContentFragmentPagerAdapter extends FragmentPagerAdapter implements
@@ -33,9 +34,9 @@ public class ContentFragmentPagerAdapter extends FragmentPagerAdapter implements
 
 	@Override
 	public Fragment getItem(int pos) {
-//		return ManagerFragment.newInstance(list.get(pos));
+		return ManagerFragment.newInstance(list.get(pos));
 
-		 return TestContentFragment.newInstance(list.get(pos).getContent());
+//		 return TestContentFragment.newInstance(list.get(pos).getContent());
 
 	}
 
@@ -45,7 +46,7 @@ public class ContentFragmentPagerAdapter extends FragmentPagerAdapter implements
 	}
 
 	@Override
-	public Object instantiateItem(ViewGroup container, int position) {
+	public Fragment instantiateItem(ViewGroup container, int position) {
 		Log.e("ContentFragmentPagerAdapter", "position = " + position);
 		// return super.instantiateItem(container, position);
 		Fragment fragment = getItem(position);
@@ -65,7 +66,7 @@ public class ContentFragmentPagerAdapter extends FragmentPagerAdapter implements
 			container.addView(fragment.getView()); // 为viewpager增加布局
 		}
 
-		return fragment.getView();
+		return fragment;
 	}
 
 	@Override
